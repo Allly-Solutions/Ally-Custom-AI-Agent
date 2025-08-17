@@ -66,7 +66,7 @@ export default function Dashboard() {
       </div> */}
 
        
-      {/* <LeadsTable/> */}
+      <LeadsTable/>
 
       
       {/* <ConversationModal

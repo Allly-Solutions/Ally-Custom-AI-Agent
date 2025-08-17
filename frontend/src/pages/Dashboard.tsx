@@ -4,7 +4,7 @@ import { MetricsCardsVoice } from '@/components/dashboard/MetricsCardsVoice';
 import { LeadsChart } from '@/components/dashboard/LeadsChart';
 import { DashboardPieChart } from '@/components/dashboard/PieChart';
 import { DashboardBarChart } from '@/components/dashboard/BarChart';
-import { LeadsTable } from '@/components/leads/LeadsTable';
+import LeadsTable from '@/components/leads/LeadsTable';
 import { ConversationModal } from '@/components/conversations/ConversationModal';
 import {
   mockDashboardMetrics,
@@ -63,13 +63,13 @@ export default function Dashboard() {
        
       {/* <div className="grid gap-6">
         <LeadsChart data={mockSentimentTrends} title="Sentiment Trends" />
-      </div>
+      </div> */}
 
        
-      <LeadsTable leads={mockLeads} onViewConversation={handleViewConversation} />
+      {/* <LeadsTable/> */}
 
       
-      <ConversationModal
+      {/* <ConversationModal
         conversation={selectedConversation || null}
         isOpen={isConversationModalOpen}
         onClose={() => setIsConversationModalOpen(false)}

@@ -12,7 +12,7 @@ export function MetricsCardsChat() {
   const fetchMetrics = async () => {
     try {
       setLoading(true);
-      const res = await fetch("http://localhost:5000/api/metrics");
+      const res = await fetch("https://ally-agent-crm-cjgecca2a8c9hjfv.eastus2-01.azurewebsites.net/api/metrics/");
       const data = await res.json();
       console.log("📊 Data from backend:", data);
 

@@ -3,6 +3,7 @@ import cors from "cors";
 import dotenv from "dotenv";
 import metricsRoutes from "./routes/metricsRoutes.js";
 import healthRoutes from './routes/healthRoutes.js'
+import contactRoutes from './routes/contactRoutes.js'
 
 dotenv.config();
 
@@ -19,6 +20,7 @@ app.use(express.json());
 // 🔹 /api/metrics endpoint
 app.use("/api/metrics",metricsRoutes);
 app.use("/api",healthRoutes)
+app.use("/api",contactRoutes)
 
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);

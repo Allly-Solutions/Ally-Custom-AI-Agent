@@ -36,7 +36,7 @@ jobs:
           ###### Repository/Build Configurations - adjust if needed ######
           app_location: "frontend"         # App source code path
           api_location: "frontend/api"     # Backend inside frontend folder
-          output_location: "build"         # Built app content directory
+          output_location: "dist"         # Built app content directory
           ###### End of Repository/Build Configurations ######
 
   close_pull_request_job:

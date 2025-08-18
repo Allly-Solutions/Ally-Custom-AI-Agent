@@ -23,21 +23,35 @@ const metrics = async (req, res) => {
     const todayCount = todayResources[0];
 
     // Query for leads by service_needed
-    // Query to aggregate leads by service (handles multiple services per lead)
-    // Query for leads by service_needed (single string field)
     const serviceQuery = {
       query: `
-    SELECT c.services_needed AS service, COUNT(1) AS count
-    FROM c
-    WHERE IS_DEFINED(c.services_needed) AND c.services_needed != ""
-    GROUP BY c.services_needed
-  `,
+        SELECT c.services_needed AS service, COUNT(1) AS count
+        FROM c
+        WHERE IS_DEFINED(c.services_needed) AND c.services_needed != ""
+        GROUP BY c.services_needed
+      `,
     };
-    const { resources } = await container.items.query(serviceQuery).fetchAll();
+    const { resources: serviceResources } = await container.items.query(serviceQuery).fetchAll();
 
     const byService = {};
-    resources.forEach((item) => {
+    serviceResources.forEach((item) => {
       byService[item.service] = item.count;
+    });
+
+    // Query for leads by source
+    const sourceQuery = {
+      query: `
+        SELECT c.source AS source, COUNT(1) AS count
+        FROM c
+        WHERE IS_DEFINED(c.source) AND c.source != ""
+        GROUP BY c.source
+      `,
+    };
+    const { resources: sourceResources } = await container.items.query(sourceQuery).fetchAll();
+
+    const bySource = {};
+    sourceResources.forEach((item) => {
+      bySource[item.source] = item.count;
     });
 
     res.json({
@@ -45,6 +59,7 @@ const metrics = async (req, res) => {
       total: totalCount,
       today: todayCount,
       byService: byService,
+      bySource: bySource, // ✅ returning sources too
     });
   } catch (error) {
     console.error("❌ Error fetching metrics:", error.message);
@@ -54,6 +69,6 @@ const metrics = async (req, res) => {
       error: error.message,
     });
   }
-}
+};
 
 export { metrics };

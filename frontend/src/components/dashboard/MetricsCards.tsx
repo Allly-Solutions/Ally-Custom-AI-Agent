@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Users, RefreshCw, Layers, Loader2 } from "lucide-react";
+import { Users, RefreshCw, Layers, Globe, Loader2 } from "lucide-react";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 
@@ -7,6 +7,7 @@ export function MetricsCardsChat() {
   const [totalLeads, setTotalLeads] = useState<number>(0);
   const [createdToday, setCreatedToday] = useState<number>(0);
   const [byService, setByService] = useState<Record<string, number>>({});
+  const [bySource, setBySource] = useState<Record<string, number>>({});
   const [loading, setLoading] = useState<boolean>(true);
 
   const fetchMetrics = async () => {
@@ -20,6 +21,7 @@ export function MetricsCardsChat() {
       setTotalLeads(data.total ?? 0);
       setCreatedToday(data.today ?? 0);
       setByService(data.byService ?? {});
+      setBySource(data.bySource ?? {});
     } catch (error) {
       console.error("❌ Failed to fetch lead metrics:", error);
     } finally {
@@ -32,7 +34,7 @@ export function MetricsCardsChat() {
   }, []);
 
   return (
-    <div className="grid gap-4 md:grid-cols-3 lg:grid-cols-3">
+    <div className="grid gap-4 md:grid-cols-4 lg:grid-cols-4">
       {/* Total Leads */}
       <Card className="hover:shadow-md transition-shadow duration-200">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
@@ -62,7 +64,7 @@ export function MetricsCardsChat() {
             onClick={fetchMetrics}
             disabled={loading}
           >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
             Refresh
           </Button>
         </CardContent>
@@ -99,7 +101,7 @@ export function MetricsCardsChat() {
             onClick={fetchMetrics}
             disabled={loading}
           >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
             Refresh
           </Button>
         </CardContent>
@@ -140,7 +142,42 @@ export function MetricsCardsChat() {
             onClick={fetchMetrics}
             disabled={loading}
           >
-            <RefreshCw className={`w-4 h-4 ${loading ? 'animate-spin' : ''}`} />
+            <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+            Refresh
+          </Button>
+        </CardContent>
+      </Card>
+
+      {/* Leads from Website */}
+      <Card className="hover:shadow-md transition-shadow duration-200">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            Leads from Website
+          </CardTitle>
+          <Globe className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+        <CardContent>
+          <div className="text-2xl font-bold flex items-center gap-2">
+            {loading ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                <span className="text-muted-foreground">Loading...</span>
+              </>
+            ) : (
+              bySource["website"] ?? 0
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            {loading ? "Fetching..." : "Leads originated from website"}
+          </p>
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-2 flex items-center gap-2"
+            onClick={fetchMetrics}
+            disabled={loading}
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
             Refresh
           </Button>
         </CardContent>

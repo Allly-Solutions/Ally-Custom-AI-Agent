@@ -21,7 +21,7 @@ const LeadsTable: React.FC = () => {
 
   useEffect(() => {
     axios
-      .get("https://ally-agent-crm-cjgecca2a8c9hjfv.eastus2-01.azurewebsites.net/api/metrics/")
+      .get("https://ally-agent-crm-cjgecca2a8c9hjfv.eastus2-01.azurewebsites.net/api/contacts")
       .then((res) => {
         console.log("API Response:", res.data);
         // Normalize response: Convert single object or array to array

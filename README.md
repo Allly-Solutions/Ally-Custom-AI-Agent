@@ -11,6 +11,7 @@ Lead Growth Rate: Percentage increase in leads compared to the previous week or 
 Leads by Source: Breakdown of leads by channel (e.g., Website, WhatsApp, Ads, Social).
 Top Lead Source: Identifies the channel generating the most leads.
 Conversion Rate by Source: Measures conversion success per source (if converted lead data is available).
+channel- website/whatsapp/discord/slack/X
 
 🤖 Bot Type / Service Metrics
 

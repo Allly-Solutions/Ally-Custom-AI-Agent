@@ -108,7 +108,7 @@ export function MetricsCardsChat() {
       </Card>
 
       {/* Leads by Service Needed */}
-      <Card className="hover:shadow-md transition-shadow duration-200">
+      {/* <Card className="hover:shadow-md transition-shadow duration-200">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Leads by Service
@@ -146,7 +146,7 @@ export function MetricsCardsChat() {
             Refresh
           </Button>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Leads from Website */}
       <Card className="hover:shadow-md transition-shadow duration-200">

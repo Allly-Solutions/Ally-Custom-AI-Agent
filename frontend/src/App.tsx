@@ -8,11 +8,23 @@ import Dashboard from "./pages/Dashboard";
 import Settings from "./pages/Settings";
 import NotFound from "./pages/NotFound";
 import AuthPage from "./pages/AuthPage";
+import { useEffect, useState } from "react";
+import SplashScreen from "./components/layout/SplashScreen";
 
 const queryClient = new QueryClient();
 
-const App = () => (
-  <QueryClientProvider client={queryClient}>
+const App = () => {
+  const [loading,setLoading]  = useState(true)
+  useEffect(() =>{
+    const timer = setTimeout(() => setLoading(false),2000)
+    return () => clearTimeout(timer)
+  },[] )
+  if(loading){
+    return <SplashScreen/>
+  }
+  return (
+      <>
+       <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
@@ -32,6 +44,10 @@ const App = () => (
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
-);
+      </>
+  )
+}
+
+
 
 export default App;

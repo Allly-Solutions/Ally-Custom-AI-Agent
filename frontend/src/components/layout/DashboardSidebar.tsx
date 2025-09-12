@@ -21,7 +21,9 @@ import {
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from '@/components/ui/select'; // ✅ using shadcn/ui Select
+} from '@/components/ui/select';
+
+import { FiLock } from 'react-icons/fi'; // ✅ lock icon
 
 const menuItems = [
   { title: 'Dashboard', url: '/', icon: Home },
@@ -63,9 +65,19 @@ export function DashboardSidebar() {
                 <SelectValue placeholder="Select Workspace" />
               </SelectTrigger>
               <SelectContent>
-                <SelectItem value="uchiha-vivek">uchiha-vivek</SelectItem>
-                <SelectItem value="ally-admin">ally-admin</SelectItem>
-                <SelectItem value="marketing">marketing</SelectItem>
+                {/* Disabled items with lock */}
+                <SelectItem value="uchiha-vivek" disabled>
+                  <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+                    <span>AllyChat</span>
+                    <FiLock className="text-muted-foreground" />
+                  </div>
+                </SelectItem>
+                <SelectItem value="ally-admin" disabled>
+                  <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+                    <span>AllyVoice</span>
+                    <FiLock className="text-muted-foreground" />
+                  </div>
+                </SelectItem>
               </SelectContent>
             </Select>
           </div>

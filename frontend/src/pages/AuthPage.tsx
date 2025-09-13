@@ -1,6 +1,6 @@
 import { FcGoogle } from "react-icons/fc";
 import AllyBG from "../../public/combo.png";
-import AllyLogo from "../../public/Allylogo.png";
+import AllyLogo from "../../public/AllyBlack.png";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
 import { useState } from "react";
@@ -16,7 +16,7 @@ export default function AuthPage() {
         redirectTo:
           import.meta.env.MODE === "development"
             ? "http://localhost:8080/"
-            : "https://red-grass-0b3af0d0f.1.azurestaticapps.net/",
+            : "https://purple-desert-09831a80f.2.azurestaticapps.net/",
       },
     });
     if (error) setError(error.message);

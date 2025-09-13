@@ -107,8 +107,45 @@ export function MetricsCardsChat() {
         </CardContent>
       </Card>
 
-      {/* Leads by Service Needed */}
       <Card className="hover:shadow-md transition-shadow duration-200">
+        <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
+          <CardTitle className="text-sm font-medium text-muted-foreground">
+            Email Notifications 
+          </CardTitle>
+          <Users className="h-4 w-4 text-muted-foreground" />
+        </CardHeader>
+
+        <CardContent>
+          <div className="text-2xl font-bold flex items-center gap-2">
+            {loading ? (
+              <>
+                <Loader2 className="h-5 w-5 animate-spin text-muted-foreground" />
+                <span className="text-muted-foreground">Loading...</span>
+              </>
+            ) : (
+              createdToday
+            )}
+          </div>
+          <p className="text-xs text-muted-foreground mt-1">
+            {loading ? "Fetching..." : "New leads counted today"}
+          </p>
+
+          <Button
+            variant="outline"
+            size="sm"
+            className="mt-2 flex items-center gap-2"
+            onClick={fetchMetrics}
+            disabled={loading}
+          >
+            <RefreshCw className={`w-4 h-4 ${loading ? "animate-spin" : ""}`} />
+            Refresh
+          </Button>
+        </CardContent>
+      </Card>
+
+
+      {/* Leads by Service Needed */}
+      {/* <Card className="hover:shadow-md transition-shadow duration-200">
         <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
           <CardTitle className="text-sm font-medium text-muted-foreground">
             Leads by Service
@@ -146,7 +183,7 @@ export function MetricsCardsChat() {
             Refresh
           </Button>
         </CardContent>
-      </Card>
+      </Card> */}
 
       {/* Leads from Website */}
       <Card className="hover:shadow-md transition-shadow duration-200">

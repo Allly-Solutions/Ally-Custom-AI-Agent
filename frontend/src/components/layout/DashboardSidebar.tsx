@@ -1,8 +1,8 @@
 import { useEffect, useState } from "react";
-import { Home, LogOut, Star, User,ChevronsUpDown } from "lucide-react";
+import { Home, LogOut, Star, User,ChevronsUpDown,Settings,Phone,Book,Flag } from "lucide-react";
 import { ChevronUp, ChevronDown } from "lucide-react";
 import { NavLink, useLocation } from "react-router-dom";
-import Ally from "../../../public/Ally.png";
+import Ally from "../../../public/AllyBlack.png";
 import {
   Sidebar,
   SidebarContent,
@@ -77,9 +77,7 @@ export function DashboardSidebar() {
             {!isCollapsed && (
               <div>
                 <h2 className="text-sm font-semibold">Ally Solutions</h2>
-                <p className="text-xs text-muted-foreground">
-                  Ally Agent Analytics
-                </p>
+                
               </div>
             )}
           </div>
@@ -112,30 +110,65 @@ export function DashboardSidebar() {
         )}
 
         {/* Navigation */}
-        <SidebarGroup>
-          <SidebarGroupLabel>Navigation</SidebarGroupLabel>
-          <SidebarGroupContent>
-            <SidebarMenu>
-              {menuItems.map((item) => (
-                <SidebarMenuItem key={item.title}>
-                  <SidebarMenuButton
-                    asChild
-                    className={
-                      isActive(item.url)
-                        ? "bg-accent text-accent-foreground font-medium"
-                        : "hover:bg-accent/50"
-                    }
-                  >
-                    <NavLink to={item.url} end={item.url === "/"}>
-                      <item.icon className="h-4 w-4" />
-                      {!isCollapsed && <span>{item.title}</span>}
-                    </NavLink>
-                  </SidebarMenuButton>
-                </SidebarMenuItem>
-              ))}
-            </SidebarMenu>
-          </SidebarGroupContent>
-        </SidebarGroup>
+         {/* Support Section */}
+ <SidebarGroup>
+  <SidebarGroupLabel className="text-[14px] font-normal" style={{ fontFamily: '"Nunito Sans", serif' }}>
+    Support
+  </SidebarGroupLabel>
+  <SidebarGroupContent>
+    <SidebarMenu className="text-[14px]" style={{ fontFamily: '"Nunito Sans", serif' }}>
+      <SidebarMenuItem>
+        <SidebarMenuButton asChild className="hover:bg-accent/50">
+          <NavLink to="/">
+            <Flag className="h-4 w-4" />
+            {!isCollapsed && <span>Get Started</span>}
+          </NavLink>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+
+      <SidebarMenuItem>
+        <SidebarMenuButton asChild className="hover:bg-accent/50">
+          <NavLink to="/">
+            <Book className="h-4 w-4" />
+            {!isCollapsed && <span>How to Use</span>}
+          </NavLink>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+
+    <SidebarMenuItem>
+  <SidebarMenuButton
+    asChild
+    className={
+      isActive("/")
+        ? "bg-primary text-white font-medium"
+        : "hover:bg-accent/50"
+    }
+  >
+    <a
+      href="https://www.allysolutions.ai/contact"
+      target="_blank"
+      rel="noopener noreferrer"
+    >
+      <Phone className="h-4 w-4" />
+      {!isCollapsed && <span>Book a Call</span>}
+    </a>
+  </SidebarMenuButton>
+</SidebarMenuItem>
+
+
+      <SidebarMenuItem>
+        <SidebarMenuButton asChild className="hover:bg-accent/50">
+          <NavLink to="/">
+            <Settings className="h-4 w-4" />
+            {!isCollapsed && <span>Settings</span>}
+          </NavLink>
+        </SidebarMenuButton>
+      </SidebarMenuItem>
+    </SidebarMenu>
+  </SidebarGroupContent>
+</SidebarGroup>
+
+
 
         {/* ✅ User dropdown at bottom, opens upwards */}
         {!isCollapsed && (

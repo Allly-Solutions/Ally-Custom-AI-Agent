@@ -10,7 +10,6 @@ import NotFound from "./pages/NotFound";
 import AuthPage from "./pages/AuthPage";
 import { useEffect, useState } from "react";
 import SplashScreen from "./components/layout/SplashScreen";
-import ProtectedRoute from "./components/auth/ProtectedRoute";
 
 
 const queryClient = new QueryClient();
@@ -31,26 +30,19 @@ const App = () => {
       <Toaster />
       <Sonner />
       <BrowserRouter>
-  <Routes>
-    {/* Public Route */}
-    <Route path="/auth" element={<AuthPage />} />
-
-    {/* Protected Routes */}
-    <Route element={<ProtectedRoute />}>
-      <Route path="/" element={<DashboardLayout />}>
-        <Route index element={<Dashboard />} />
-        <Route path="leads" element={<Dashboard />} />
-        <Route path="analytics" element={<Dashboard />} />
-        <Route path="conversations" element={<Dashboard />} />
-        <Route path="settings" element={<Settings />} />
-      </Route>
-    </Route>
-
-    {/* Catch-all */}
-    <Route path="*" element={<NotFound />} />
-  </Routes>
-</BrowserRouter>
-
+        <Routes>
+          <Route path="/auth" element={<AuthPage/>}/>
+          <Route path="/" element={<DashboardLayout />}>
+            <Route index element={<Dashboard />} />
+            <Route path="leads" element={<Dashboard />} />
+            <Route path="analytics" element={<Dashboard />} />
+            <Route path="conversations" element={<Dashboard />} />
+            <Route path="settings" element={<Settings />} />
+          </Route>
+          {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
+          <Route path="*" element={<NotFound />} />
+        </Routes>
+      </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>
       </>

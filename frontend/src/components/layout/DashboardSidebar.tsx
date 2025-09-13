@@ -1,6 +1,7 @@
+// DashboardSidebar.tsx
 import { BarChart3, Users, MessageSquare, Settings, Home } from 'lucide-react';
 import { NavLink, useLocation } from 'react-router-dom';
-import Ally from '../../../public/Ally.png'
+import Ally from '../../../public/Ally.png';
 import {
   Sidebar,
   SidebarContent,
@@ -11,14 +12,21 @@ import {
   SidebarMenuButton,
   SidebarMenuItem,
   useSidebar,
+  SidebarTrigger,
 } from '@/components/ui/sidebar';
+
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from '@/components/ui/select';
+
+import { FiLock } from 'react-icons/fi'; // ✅ lock icon
 
 const menuItems = [
   { title: 'Dashboard', url: '/', icon: Home },
-  // { title: 'Leads', url: '/leads', icon: Users },
-  // { title: 'Analytics', url: '/analytics', icon: BarChart3 },
-  // { title: 'Conversations', url: '/conversations', icon: MessageSquare },
-  // { title: 'Settings', url: '/settings', icon: Settings },
 ];
 
 export function DashboardSidebar() {
@@ -35,21 +43,45 @@ export function DashboardSidebar() {
   return (
     <Sidebar className={isCollapsed ? 'w-14' : 'w-64'} collapsible="icon">
       <SidebarContent>
-        <div className="p-4 border-b border-border">
+        {/* Logo + Collapse Button Row */}
+        <div className="p-4 border-b border-border flex items-center justify-between">
           <div className="flex items-center gap-2">
-            <div className="flex items-center gap-2">
-              <img src={Ally} alt="ally-logo" className="w-8 h-8 object-contain" />
-              {!isCollapsed && (
-                <div>
-                  <h2 className="text-sm font-semibold">Ally Solutions</h2>
-                  <p className="text-xs text-muted-foreground">Ally Agent Analytics</p>
-                </div>
-              )}
-            </div>
-
-
+            <img src={Ally} alt="ally-logo" className="w-8 h-8 object-contain" />
+            {!isCollapsed && (
+              <div>
+                <h2 className="text-sm font-semibold">Ally Solutions</h2>
+                <p className="text-xs text-muted-foreground">Ally Agent Analytics</p>
+              </div>
+            )}
           </div>
+          <SidebarTrigger />
         </div>
+
+        {/* ✅ Dropdown right below logo */}
+        {!isCollapsed && (
+          <div className="p-4 border-b border-border">
+            <Select defaultValue="uchiha-vivek">
+              <SelectTrigger className="w-full">
+                <SelectValue placeholder="Select Workspace" />
+              </SelectTrigger>
+              <SelectContent>
+                {/* Disabled items with lock */}
+                <SelectItem value="uchiha-vivek" disabled>
+                  <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+                    <span>AllyChat</span>
+                    <FiLock className="text-muted-foreground" />
+                  </div>
+                </SelectItem>
+                <SelectItem value="ally-admin" disabled>
+                  <div className="flex items-center gap-2 opacity-50 cursor-not-allowed">
+                    <span>AllyVoice</span>
+                    <FiLock className="text-muted-foreground" />
+                  </div>
+                </SelectItem>
+              </SelectContent>
+            </Select>
+          </div>
+        )}
 
         <SidebarGroup>
           <SidebarGroupLabel>Navigation</SidebarGroupLabel>

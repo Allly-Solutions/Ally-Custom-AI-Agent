@@ -1,12 +1,15 @@
 // components/auth/ProtectedRoute.tsx
 import { Navigate, Outlet } from "react-router-dom";
-import { useSession } from "@supabase/auth-helpers-react";
+import { useSessionContext } from "@supabase/auth-helpers-react";
 
 export default function ProtectedRoute() {
-  const session = useSession();
+  const { session, isLoading } = useSessionContext();
+
+  if (isLoading) {
+    return <div>Loading...</div>; // or a spinner
+  }
 
   if (!session) {
-    // Redirect unauthenticated users to auth page
     return <Navigate to="/auth" replace />;
   }
 

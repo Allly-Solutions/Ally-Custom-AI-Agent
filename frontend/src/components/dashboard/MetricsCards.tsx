@@ -15,7 +15,7 @@ export function MetricsCardsChat() {
       setLoading(true);
       const res = await fetch("https://ally-agent-crm-cjgecca2a8c9hjfv.eastus2-01.azurewebsites.net/api/metrics/");
       const data = await res.json();
-      console.log("📊 Data from backend:", data);
+      // console.log("📊 Data from backend:", data);
 
       // ✅ set all metrics
       setTotalLeads(data.total ?? 0);

@@ -42,14 +42,14 @@ export function DashboardLayout() {
       if (error) {
         console.error("Error fetching user:", error.message);
       } else if (user) {
-        console.log("User Info:", {
-          id: user.id,
-          email: user.email,
-          username:
-            user.user_metadata?.full_name ||
-            user.user_metadata?.name ||
-            "(no username)",
-        });
+        // console.log("User Info:", {
+        //   id: user.id,
+        //   email: user.email,
+        //   username:
+        //     user.user_metadata?.full_name ||
+        //     user.user_metadata?.name ||
+        //     "(no username)",
+        // });
       } else {
         console.log("No user logged in.");
       }

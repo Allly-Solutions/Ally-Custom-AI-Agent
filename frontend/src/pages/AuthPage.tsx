@@ -3,11 +3,20 @@ import AllyBG from "../../public/combo.png";
 import AllyLogo from "../../public/AllyBlack.png";
 import { useNavigate } from "react-router-dom";
 import { supabase } from "../../supabaseClient";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { useSession } from "@supabase/auth-helpers-react";
 
 export default function AuthPage() {
   const navigate = useNavigate();
   const [error, setError] = useState("");
+  const session = useSession();
+
+  // 👇 redirect if already logged in
+  useEffect(() => {
+    if (session) {
+      navigate("/", { replace: true });
+    }
+  }, [session, navigate]);
 
   const handleGoogleSignIn = async () => {
     const { error } = await supabase.auth.signInWithOAuth({
